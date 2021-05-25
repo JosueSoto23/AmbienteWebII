@@ -6,19 +6,24 @@
     <title>Week 1 - Consume API</title>
     <script>
       const completed = (e) => {
-        const data = JSON.parse(e.target.responseText);
-        document.getElementById(
-          "result"
-        ).innerHTML = `Tipo de Cambio Dolares ${data.TipoCompraDolares}`;
+        document.getElementById("result").innerHTML = e.target.responseText;
       };
 
-      const error = () => console.log(this.responseText);
+      const error = (e) => console.log(e.target.responseText);
 
       function getHelloWorld() {
         const ajaxRequest = new XMLHttpRequest();
         ajaxRequest.addEventListener("load", completed);
         ajaxRequest.addEventListener("error", error);
-        ajaxRequest.open("GET", "http://localhost:8080/tipocambio");
+        ajaxRequest.open("GET", "http://localhost:3000/api/tasks");
+        ajaxRequest.send();
+      }
+
+      function getHelloWorld2() {
+        const ajaxRequest = new XMLHttpRequest();
+        ajaxRequest.addEventListener("load", completed);
+        ajaxRequest.addEventListener("error", error);
+        ajaxRequest.open("GET", "http://localhost:3000/api/task");
         ajaxRequest.send();
       }
     </script>
@@ -26,6 +31,7 @@
 
   <body>
     <button onclick="getHelloWorld();">Hello</button>
+    <button onclick="getHelloWorld2();">Hello</button>
     <h3>Results:</h3>
     <div id="result"></div>
   </body>
