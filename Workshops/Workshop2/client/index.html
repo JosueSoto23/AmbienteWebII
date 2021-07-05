@@ -3,10 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> Workshop 2 - Consume API </title>
+    <title> Workshop 3 - Consume API </title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
     <script>
       const completed = (e) => {
         document.getElementById("result").innerHTML = e.target.responseText;
+
+        for (let dato in completed) {
+          for (let i in datos[dato]) {
+            console.log(i, datos[dato][i]);
+          }
+        }
       };
 
       const error = (e) => console.log(e.target.responseText);
@@ -15,15 +27,35 @@
         const ajaxRequest = new XMLHttpRequest();
         ajaxRequest.addEventListener("load", completed);
         ajaxRequest.addEventListener("error", error);
-        ajaxRequest.open("GET", "http://localhost:3000/hello");
+        ajaxRequest.open("GET", "http://localhost:3000/cerveceria");
         ajaxRequest.send();
       }
     </script>
   </head>
 
   <body>
-    <button onclick="getHelloWorld();"> Hello </button>
-    <h3> Result: </h3>
+    <button onclick="getHelloWorld();">Hello</button>
+    <h3> Results: </h3>
     <div id="result"></div>
+
+    <div id="result" class="container">
+      <h1>News Sources</h1>
+      <hr id="hr3" />
+
+      <table class="table table-responsive table-bordered">
+        <thead>
+          <tr>
+            <th> Name </th>
+            <th> Category </th>
+            <th> Actions </th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <form action="addnews.php">
+        <button type="submit" class="btn btn-primary"> Add New </button>
+      </form>
+    </div>
   </body>
 </html>
